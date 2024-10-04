@@ -13,13 +13,17 @@ const sweaters = [
   { id: 4, name: 'Cable Knit Cardigan', price: 3299.99, image: 'sweater4.jpg' },
 ];
 
+// Serve index.html at the root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.get('/api/sweaters', (req, res) => {
   res.json(sweaters);
 });
 
 app.post('/api/order', (req, res) => {
   const order = req.body;
-  // Here you would typically process the order, save to a database, etc.
   console.log('Received order:', order);
   res.json({ message: 'Order received successfully!', orderId: Date.now() });
 });
